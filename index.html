@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Angel Gabriel Flores Villegas — Currículum</title>
+<style>
+  :root{
+    --ink:#1B2A41;
+    --cream:#F7F5F1;
+    --gold:#B08D57;
+    --slate:#5C6570;
+    --line:#DDD7CC;
+    --white:#FFFFFF;
+  }
+
+  *{ box-sizing:border-box; margin:0; padding:0; }
+
+  body{
+    font-family:'Source Sans 3','Segoe UI',sans-serif;
+    background:var(--cream);
+    color:var(--ink);
+    line-height:1.6;
+  }
+
+  @font-face{
+    font-family:'Display';
+  }
+
+  .page{
+    max-width:960px;
+    margin:40px auto;
+    background:var(--white);
+    box-shadow:0 10px 40px rgba(27,42,65,0.10);
+    display:grid;
+    grid-template-columns:280px 1fr;
+    min-height:90vh;
+  }
+
+  /* SIDEBAR */
+  aside{
+    background:var(--ink);
+    color:var(--cream);
+    padding:48px 32px;
+    display:flex;
+    flex-direction:column;
+    gap:36px;
+  }
+
+  .avatar{
+    width:96px;
+    height:96px;
+    border-radius:50%;
+    background:linear-gradient(135deg,var(--gold),#8a6d3f);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:34px;
+    font-weight:700;
+    letter-spacing:1px;
+    color:var(--ink);
+    margin-bottom:4px;
+  }
+
+  aside h1{
+    font-family:Georgia, 'Times New Roman', serif;
+    font-size:26px;
+    font-weight:700;
+    line-height:1.25;
+    letter-spacing:0.3px;
+  }
+
+  aside .role{
+    color:var(--gold);
+    font-size:14px;
+    letter-spacing:1.5px;
+    text-transform:uppercase;
+    margin-top:6px;
+  }
+
+  .side-section h2{
+    font-size:12px;
+    letter-spacing:2px;
+    text-transform:uppercase;
+    color:var(--gold);
+    margin-bottom:12px;
+    border-bottom:1px solid rgba(247,245,241,0.2);
+    padding-bottom:8px;
+  }
+
+  .contact-item{
+    font-size:14px;
+    margin-bottom:10px;
+    display:flex;
+    gap:8px;
+    word-break:break-word;
+  }
+
+  .contact-item span.tag{
+    color:var(--gold);
+    font-weight:600;
+    min-width:64px;
+    flex-shrink:0;
+  }
+
+  .skill{
+    margin-bottom:12px;
+  }
+  .skill-name{
+    font-size:13px;
+    margin-bottom:5px;
+    display:flex;
+    justify-content:space-between;
+  }
+  .skill-bar{
+    height:5px;
+    background:rgba(247,245,241,0.15);
+    border-radius:3px;
+    overflow:hidden;
+  }
+  .skill-bar > div{
+    height:100%;
+    background:var(--gold);
+    border-radius:3px;
+  }
+
+  .lang-item{
+    font-size:14px;
+    display:flex;
+    justify-content:space-between;
+    margin-bottom:8px;
+  }
+  .lang-item span:last-child{ color:var(--gold); font-size:12px; }
+
+  /* MAIN */
+  main{
+    padding:56px 48px;
+  }
+
+  main > header{
+    margin-bottom:36px;
+    border-bottom:2px solid var(--line);
+    padding-bottom:20px;
+  }
+
+  main > header p{
+    color:var(--slate);
+    font-size:15.5px;
+    max-width:560px;
+  }
+
+  .eyebrow{
+    font-size:12px;
+    letter-spacing:2px;
+    text-transform:uppercase;
+    color:var(--gold);
+    font-weight:700;
+  }
+
+  section{
+    margin-bottom:38px;
+  }
+
+  section h2{
+    font-family:Georgia, 'Times New Roman', serif;
+    font-size:20px;
+    color:var(--ink);
+    margin-bottom:20px;
+    position:relative;
+    padding-left:16px;
+  }
+  section h2::before{
+    content:"";
+    position:absolute;
+    left:0;
+    top:4px;
+    bottom:4px;
+    width:4px;
+    background:var(--gold);
+    border-radius:2px;
+  }
+
+  .entry{
+    display:grid;
+    grid-template-columns:130px 1fr;
+    gap:16px;
+    margin-bottom:22px;
+  }
+
+  .entry .when{
+    font-size:12.5px;
+    color:var(--slate);
+    font-weight:600;
+    letter-spacing:0.4px;
+    padding-top:2px;
+  }
+
+  .entry .what h3{
+    font-size:16px;
+    color:var(--ink);
+    margin-bottom:2px;
+  }
+  .entry .what .org{
+    font-size:13.5px;
+    color:var(--gold);
+    font-weight:600;
+    margin-bottom:8px;
+  }
+  .entry .what p{
+    font-size:14.5px;
+    color:var(--slate);
+  }
+
+  .tags{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+    margin-top:20px;
+  }
+  .tags span{
+    background:var(--cream);
+    border:1px solid var(--line);
+    color:var(--ink);
+    font-size:12.5px;
+    padding:6px 12px;
+    border-radius:20px;
+  }
+
+  .print-btn{
+    position:fixed;
+    top:24px;
+    right:24px;
+    background:var(--ink);
+    color:var(--cream);
+    border:none;
+    padding:10px 18px;
+    border-radius:24px;
+    font-size:13px;
+    letter-spacing:0.5px;
+    cursor:pointer;
+    box-shadow:0 6px 18px rgba(27,42,65,0.25);
+    transition:transform 0.15s ease, background 0.15s ease;
+  }
+  .print-btn:hover{
+    background:var(--gold);
+    transform:translateY(-2px);
+  }
+
+  @media (max-width:720px){
+    .page{ grid-template-columns:1fr; margin:0; }
+    main{ padding:36px 24px; }
+    .entry{ grid-template-columns:1fr; }
+    .print-btn{ display:none; }
+  }
+
+  @media print{
+    .print-btn{ display:none; }
+    .page{ box-shadow:none; margin:0; }
+    body{ background:var(--white); }
+  }
+</style>
+</head>
+<body>
+
+<button class="print-btn" onclick="window.print()">Descargar / Imprimir</button>
+
+<div class="page">
+
+  <!-- SIDEBAR -->
+  <aside>
+    <div>
+      <div class="avatar">AF</div>
+      <h1>Angel Gabriel<br>Flores Villegas</h1>
+      <div class="role">Perfil profesional</div>
+    </div>
+
+    <div class="side-section">
+      <h2>Contacto</h2>
+      <div class="contact-item"><span class="tag">Dirección</span> Benito Juárez #45</div>
+      <div class="contact-item"><span class="tag">Correo</span> angel.flores@correo.com</div>
+      <div class="contact-item"><span class="tag">Teléfono</span> (000) 000 0000</div>
+      <div class="contact-item"><span class="tag">Ciudad</span> Huajuapan de León, Oaxaca</div>
+    </div>
+
+    <div class="side-section">
+      <h2>Habilidades</h2>
+      <div class="skill">
+        <div class="skill-name"><span>Trabajo en equipo</span></div>
+        <div class="skill-bar"><div style="width:92%"></div></div>
+      </div>
+      <div class="skill">
+        <div class="skill-name"><span>Organización</span></div>
+        <div class="skill-bar"><div style="width:88%"></div></div>
+      </div>
+      <div class="skill">
+        <div class="skill-name"><span>Comunicación</span></div>
+        <div class="skill-bar"><div style="width:85%"></div></div>
+      </div>
+      <div class="skill">
+        <div class="skill-name"><span>Resolución de problemas</span></div>
+        <div class="skill-bar"><div style="width:90%"></div></div>
+      </div>
+    </div>
+
+    <div class="side-section">
+      <h2>Idiomas</h2>
+      <div class="lang-item"><span>Español</span><span>Nativo</span></div>
+      <div class="lang-item"><span>Inglés</span><span>Intermedio</span></div>
+    </div>
+  </aside>
+
+  <!-- MAIN -->
+  <main>
+    <header>
+      <div class="eyebrow">Currículum vitae</div>
+      <p>Persona proactiva y responsable, con disposición para aprender rápidamente y aportar en distintos entornos de trabajo. Interesado en desarrollarse profesionalmente y sumar valor a través de la organización, el compromiso y el trabajo en equipo.</p>
+    </header>
+
+    <section>
+      <h2>Educación</h2>
+      <div class="entry">
+        <div class="when">2020 — 2024</div>
+        <div class="what">
+          <h3>Nombre de la institución educativa</h3>
+          <div class="org">Nivel / carrera cursada</div>
+          <p>Formación académica orientada a [área de estudio]. Edita este bloque con tu institución, carrera y fechas reales.</p>
+        </div>
+      </div>
+      <div class="entry">
+        <div class="when">2017 — 2020</div>
+        <div class="what">
+          <h3>Nombre del bachillerato o preparatoria</h3>
+          <div class="org">Educación media superior</div>
+          <p>Formación previa completada. Sustituye este texto con tus datos.</p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Experiencia</h2>
+      <div class="entry">
+        <div class="when">2023 — Actual</div>
+        <div class="what">
+          <h3>Puesto que desempeñas</h3>
+          <div class="org">Nombre de la empresa</div>
+          <p>Descripción breve de tus responsabilidades y logros principales en este puesto.</p>
+        </div>
+      </div>
+      <div class="entry">
+        <div class="when">2021 — 2023</div>
+        <div class="what">
+          <h3>Puesto anterior</h3>
+          <div class="org">Nombre de la empresa</div>
+          <p>Descripción breve de tus responsabilidades y logros principales en este puesto.</p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Áreas de interés</h2>
+      <div class="tags">
+        <span>Trabajo en equipo</span>
+        <span>Atención al cliente</span>
+        <span>Organización</span>
+        <span>Aprendizaje continuo</span>
+        <span>Tecnología</span>
+      </div>
+    </section>
+  </main>
+
+</div>
+
+</body>
+</html>
