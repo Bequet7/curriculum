@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Call of Duty: Mobile — Guía y Noticias</title>
+<style>
+  :root{
+    --black:#0D0F0C;
+    --panel:#161911;
+    --olive:#3D4A2C;
+    --olive-light:#5C6F3E;
+    --orange:#E8641C;
+    --sand:#C9C2AA;
+    --white:#F2F1EA;
+    --danger:#B0332A;
+  }
+
+  *{ box-sizing:border-box; margin:0; padding:0; }
+
+  body{
+    background:var(--black);
+    color:var(--white);
+    font-family:'Segoe UI',Arial,sans-serif;
+    line-height:1.6;
+  }
+
+  a{ color:inherit; text-decoration:none; }
+
+  /* HEADER */
+  header.top{
+    background:linear-gradient(120deg,var(--black) 60%, var(--olive) 100%);
+    border-bottom:3px solid var(--orange);
+    padding:22px 5%;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:12px;
+  }
+
+  .brand{
+    display:flex;
+    align-items:center;
+    gap:14px;
+  }
+
+  .crosshair{
+    width:44px;
+    height:44px;
+    position:relative;
+    flex-shrink:0;
+  }
+  .crosshair::before, .crosshair::after{
+    content:"";
+    position:absolute;
+    background:var(--orange);
+  }
+  .crosshair::before{
+    top:50%; left:0; right:0; height:3px; transform:translateY(-50%);
+  }
+  .crosshair::after{
+    left:50%; top:0; bottom:0; width:3px; transform:translateX(-50%);
+  }
+  .crosshair .ring{
+    position:absolute; inset:6px;
+    border:3px solid var(--orange);
+    border-radius:50%;
+  }
+
+  .brand h1{
+    font-size:22px;
+    letter-spacing:1.5px;
+    text-transform:uppercase;
+  }
+  .brand h1 span{ color:var(--orange); }
+  .brand .tagline{
+    font-size:12px;
+    color:var(--sand);
+    letter-spacing:1px;
+    text-transform:uppercase;
+  }
+
+  .status-pill{
+    background:var(--panel);
+    border:1px solid var(--olive-light);
+    border-radius:20px;
+    padding:8px 16px;
+    font-size:12.5px;
+    display:flex;
+    align-items:center;
+    gap:8px;
+  }
+  .status-dot{
+    width:9px; height:9px; border-radius:50%;
+    background:#5BB450;
+    box-shadow:0 0 8px #5BB450;
+  }
+
+  /* NAV */
+  nav{
+    background:var(--panel);
+    display:flex;
+    gap:4px;
+    padding:0 5%;
+    overflow-x:auto;
+    border-bottom:1px solid #232819;
+  }
+  nav a{
+    padding:15px 18px;
+    font-size:13.5px;
+    letter-spacing:0.8px;
+    text-transform:uppercase;
+    font-weight:600;
+    color:var(--sand);
+    border-bottom:3px solid transparent;
+    transition:border-color .2s, color .2s;
+    white-space:nowrap;
+  }
+  nav a:hover, nav a.active{
+    color:var(--orange);
+    border-bottom-color:var(--orange);
+  }
+
+  /* LAYOUT */
+  .wrap{
+    max-width:1180px;
+    margin:0 auto;
+    padding:40px 5%;
+    display:grid;
+    grid-template-columns:2.3fr 1fr;
+    gap:36px;
+  }
+
+  main{ display:flex; flex-direction:column; gap:28px; }
+
+  article{
+    background:var(--panel);
+    border:1px solid #232819;
+    border-left:4px solid var(--orange);
+    border-radius:6px;
+    padding:28px;
+  }
+
+  .eyebrow{
+    font-size:11.5px;
+    letter-spacing:2px;
+    text-transform:uppercase;
+    color:var(--orange);
+    font-weight:700;
+    margin-bottom:8px;
+  }
+
+  article h2{
+    font-size:23px;
+    margin-bottom:14px;
+    letter-spacing:0.3px;
+  }
+
+  article p{
+    color:var(--sand);
+    font-size:15px;
+    margin-bottom:14px;
+  }
+
+  .meta-row{
+    display:flex;
+    gap:16px;
+    flex-wrap:wrap;
+    margin-bottom:16px;
+    font-size:12.5px;
+    color:#8B9179;
+  }
+
+  .toggle-btn{
+    background:var(--olive);
+    color:var(--white);
+    border:none;
+    padding:9px 16px;
+    font-size:12.5px;
+    letter-spacing:0.5px;
+    text-transform:uppercase;
+    border-radius:4px;
+    cursor:pointer;
+    font-weight:600;
+    transition:background .2s;
+  }
+  .toggle-btn:hover{ background:var(--orange); }
+
+  .extra{
+    display:none;
+    margin-top:14px;
+    padding-top:14px;
+    border-top:1px dashed #2E3521;
+  }
+  .extra.show{ display:block; }
+
+  .mode-list{
+    list-style:none;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px;
+    margin-top:6px;
+  }
+  .mode-list li{
+    background:#1E2216;
+    padding:10px 12px;
+    border-radius:4px;
+    font-size:13.5px;
+    color:var(--sand);
+    border-left:3px solid var(--olive-light);
+  }
+
+  /* SIDEBAR */
+  aside{ display:flex; flex-direction:column; gap:22px; }
+
+  .side-box{
+    background:var(--panel);
+    border:1px solid #232819;
+    border-radius:6px;
+    padding:22px;
+  }
+  .side-box h3{
+    font-size:13px;
+    letter-spacing:1.5px;
+    text-transform:uppercase;
+    color:var(--orange);
+    margin-bottom:16px;
+    padding-bottom:10px;
+    border-bottom:1px solid #232819;
+  }
+
+  .fact{
+    display:flex;
+    justify-content:space-between;
+    font-size:13.5px;
+    padding:8px 0;
+    border-bottom:1px solid #1D2115;
+    color:var(--sand);
+  }
+  .fact strong{ color:var(--white); font-weight:600; }
+
+  #serverBox{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+  }
+  #serverText{ font-size:14px; }
+  #serverPing{ color:var(--orange); font-weight:700; font-size:18px; }
+
+  .refresh-btn{
+    background:none;
+    border:1px solid var(--olive-light);
+    color:var(--sand);
+    padding:6px 12px;
+    font-size:12px;
+    border-radius:4px;
+    cursor:pointer;
+    margin-top:12px;
+    width:100%;
+    transition:background .2s, color .2s;
+  }
+  .refresh-btn:hover{ background:var(--olive); color:var(--white); }
+
+  .tip{
+    font-size:13.5px;
+    color:var(--sand);
+    padding:10px 0;
+    border-bottom:1px dashed #1D2115;
+  }
+  .tip:last-child{ border-bottom:none; }
+
+  /* FOOTER */
+  footer{
+    background:var(--panel);
+    border-top:3px solid var(--orange);
+    padding:34px 5% 20px;
+    margin-top:20px;
+  }
+  .footer-grid{
+    max-width:1180px;
+    margin:0 auto;
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+    gap:24px;
+    margin-bottom:22px;
+  }
+  .footer-grid h4{
+    font-size:12.5px;
+    letter-spacing:1.5px;
+    text-transform:uppercase;
+    color:var(--orange);
+    margin-bottom:12px;
+  }
+  .footer-grid a{
+    display:block;
+    font-size:13.5px;
+    color:var(--sand);
+    margin-bottom:8px;
+  }
+  .footer-grid a:hover{ color:var(--orange); }
+
+  .footer-bottom{
+    max-width:1180px;
+    margin:0 auto;
+    border-top:1px solid #232819;
+    padding-top:16px;
+    font-size:12px;
+    color:#71765F;
+    text-align:center;
+  }
+
+  @media (max-width:800px){
+    .wrap{ grid-template-columns:1fr; }
+    .mode-list{ grid-template-columns:1fr; }
+  }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="brand">
+    <div class="crosshair"><div class="ring"></div></div>
+    <div>
+      <h1>COD<span>M</span> HUB</h1>
+      <div class="tagline">Guía no oficial · Noticias y datos del juego</div>
+    </div>
+  </div>
+  <div class="status-pill"><span class="status-dot"></span> Servidores en línea</div>
+</header>
+
+<nav>
+  <a href="#inicio" class="active">Inicio</a>
+  <a href="#noticias">Noticias</a>
+  <a href="#modos">Modos</a>
+  <a href="#datos">Datos del juego</a>
+  <a href="#descarga">Descarga</a>
+</nav>
+
+<div class="wrap">
+  <main id="inicio">
+
+    <article id="noticias">
+      <div class="eyebrow">Temporada actual</div>
+      <h2>Nueva temporada trae mapas, armas y pase de batalla renovado</h2>
+      <div class="meta-row">
+        <span>📅 Actualización reciente</span>
+        <span>🎮 Multijugador · Battle Royale</span>
+      </div>
+      <p>Call of Duty: Mobile continúa recibiendo actualizaciones periódicas con nuevos modos temporales, mapas clásicos remasterizados y un pase de batalla con recompensas exclusivas de armas y operadores. El juego, desarrollado por TiMi Studios y publicado por Activision, mantiene una base de jugadores muy activa gracias a estos lanzamientos constantes.</p>
+      <button class="toggle-btn" onclick="toggleExtra('extra1', this)">Ver más detalles</button>
+      <div class="extra" id="extra1">
+        <p>Cada temporada suele incluir eventos con misiones diarias, un nuevo mapa de Battle Royale o ajustes al existente, balanceo de armas y colaboraciones especiales con otras franquicias. Se recomienda revisar el apartado de noticias dentro del propio juego para conocer fechas exactas, ya que varían por región.</p>
+      </div>
+    </article>
+
+    <article id="modos">
+      <div class="eyebrow">Modos de juego</div>
+      <h2>Multijugador clásico, Battle Royale y mucho más</h2>
+      <p>CODM ofrece una variedad de modos pensados tanto para partidas rápidas como para sesiones largas de estrategia en equipo. Estos son algunos de los modos disponibles:</p>
+      <ul class="mode-list">
+        <li>🔫 Team Deathmatch</li>
+        <li>🏆 Battle Royale (hasta 100 jugadores)</li>
+        <li>🎯 Búsqueda y Destrucción</li>
+        <li>🧟 Modo Zombis</li>
+        <li>🚁 Frontline</li>
+        <li>🔥 Gun Game</li>
+      </ul>
+      <button class="toggle-btn" onclick="toggleExtra('extra2', this)">Ver requisitos recomendados</button>
+      <div class="extra" id="extra2">
+        <p><strong>Requisitos mínimos aproximados:</strong> Android 4.3 / iOS 9.0 o superior, al menos 2 GB de espacio libre y conexión a internet estable. Para una mejor experiencia gráfica se recomienda un dispositivo de gama media-alta.</p>
+      </div>
+    </article>
+
+  </main>
+
+  <aside>
+    <div class="side-box" id="datos">
+      <h3>Datos del juego</h3>
+      <div class="fact"><span>Desarrollador</span><strong>TiMi Studios</strong></div>
+      <div class="fact"><span>Publicador</span><strong>Activision</strong></div>
+      <div class="fact"><span>Plataformas</span><strong>Android / iOS</strong></div>
+      <div class="fact"><span>Precio</span><strong>Gratis</strong></div>
+      <div class="fact"><span>Categoría</span><strong>Shooter / Acción</strong></div>
+    </div>
+
+    <div class="side-box">
+      <h3>Estado del servidor</h3>
+      <div id="serverBox">
+        <span id="serverText">🟢 Operativo</span>
+        <span id="serverPing">— ms</span>
+      </div>
+      <button class="refresh-btn" onclick="checkPing()">Comprobar ping</button>
+    </div>
+
+    <div class="side-box" id="descarga">
+      <h3>Consejos rápidos</h3>
+      <div class="tip">Descarga siempre desde la Play Store o App Store oficial.</div>
+      <div class="tip">Verifica que el desarrollador sea "Activision Publishing, Inc."</div>
+      <div class="tip">Activa la descarga automática de datos adicionales por Wi-Fi.</div>
+      <div class="tip">Revisa el pase de batalla antes de que termine la temporada.</div>
+    </div>
+  </aside>
+</div>
+
+<footer>
+  <div class="footer-grid">
+    <div>
+      <h4>Navegación</h4>
+      <a href="#inicio">Inicio</a>
+      <a href="#noticias">Noticias</a>
+      <a href="#modos">Modos</a>
+      <a href="#descarga">Descarga</a>
+    </div>
+    <div>
+      <h4>Comunidad</h4>
+      <a href="#">Foro de jugadores</a>
+      <a href="#">Guías y trucos</a>
+      <a href="#">Torneos</a>
+    </div>
+    <div>
+      <h4>Soporte</h4>
+      <a href="#">Preguntas frecuentes</a>
+      <a href="#">Reportar un problema</a>
+      <a href="#">Contacto</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    Página informativa no oficial. Call of Duty: Mobile es una marca registrada de Activision Publishing, Inc. Este sitio no está afiliado ni respaldado por Activision o TiMi Studios.
+  </div>
+</footer>
+
+<script>
+  // Alternar información extra dentro de los artículos
+  function toggleExtra(id, btn){
+    const el = document.getElementById(id);
+    el.classList.toggle('show');
+    btn.textContent = el.classList.contains('show') ? 'Ver menos' : 'Ver más detalles';
+  }
+
+  // Simular una comprobación de ping del servidor
+  function checkPing(){
+    const pingEl = document.getElementById('serverPing');
+    const textEl = document.getElementById('serverText');
+    pingEl.textContent = '...';
+    setTimeout(() => {
+      const fakePing = Math.floor(Math.random() * (90 - 20 + 1)) + 20;
+      pingEl.textContent = fakePing + ' ms';
+      textEl.textContent = fakePing < 60 ? '🟢 Operativo' : '🟡 Latencia alta';
+    }, 600);
+  }
+
+  // Resaltar el enlace de navegación activo al hacer scroll
+  const navLinks = document.querySelectorAll('nav a');
+  const sections = ['inicio','noticias','modos','datos','descarga'].map(id => document.getElementById(id));
+
+  window.addEventListener('scroll', () => {
+    let currentId = 'inicio';
+    sections.forEach(sec => {
+      if(sec && window.scrollY >= sec.offsetTop - 120){
+        currentId = sec.id;
+      }
+    });
+    navLinks.forEach(link => {
+      link.classList.toggle('active', link.getAttribute('href') === '#' + currentId);
+    });
+  });
+
+  // Ping inicial automático
+  window.addEventListener('load', checkPing);
+</script>
+
+</body>
+</html>
